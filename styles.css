@@ -1,0 +1,143 @@
+@font-face {
+  font-family: "Nunito Sans";
+  src: url("assets/fonts/nunito-sans-latin-400-normal.woff") format("woff");
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Nunito Sans";
+  src: url("assets/fonts/nunito-sans-latin-700-normal.woff") format("woff");
+  font-style: normal;
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "Nunito Sans";
+  src: url("assets/fonts/nunito-sans-latin-400-italic.woff") format("woff");
+  font-style: italic;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Nunito Sans";
+  src: url("assets/fonts/nunito-sans-latin-700-italic.woff") format("woff");
+  font-style: italic;
+  font-weight: 700;
+}
+
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    width: 100vw;
+
+    font-family: "Nunito Sans", sans-serif;
+    color: black;
+}
+
+a {
+    text-decoration: none;
+}
+
+.sidebar {
+    width: 15vh;
+    height: 100vh;
+}
+
+.sidebar ul {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    list-style-type: none;
+}
+
+.sidebar li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+
+    width: 100%;
+
+    border: 1px solid black;
+    border-width: 0 1px 1px 0;
+}
+
+.sidebar li.selected {
+    border-right: white;
+    background-color: #F5F5F5;
+}
+
+.sidebar li a {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.sidebar li a:link,
+.sidebar li a:visited
+{
+    color: inherit;
+}
+
+.sidebar li a:hover {
+    /* Replace this later with JS animation */
+    border: 2px dotted blue;
+}
+
+.sidebar li a:active {
+    border: 0;
+    background-color: #FAFAFA;
+}
+
+.page {
+    flex: 1;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    background-color: #F5F5F5;
+}
+
+.home-box {
+    width: 80%; 
+    margin: 10px;
+}
+
+.stats {
+    height: 10%;
+
+    margin-top: 20px;
+
+    border: 1px solid black;
+}
+
+.info {
+    width: 80%;
+    height: 50%;
+
+    border: 1px solid black;
+}
+
+.add-task {
+    width: 80%;
+    height: 25%;
+
+    border: 1px solid black;
+}
+
+/* Add mobile styles later; desktop is default*/
