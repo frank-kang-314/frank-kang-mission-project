@@ -7,16 +7,7 @@ export default class extends AbstractView {
     }
 
     async getHtml() {
-        return `
-            <div class="home-box stats">
-
-            </div>
-            <div class="home-box info">
-                <div class="home-task-overview"></div>
-            </div>
-            <div class="home-box add-task">
-
-            </div>
-        `
+        const response = await fetch("/static/html/home.html");
+        return await response.text();
     }
 }
