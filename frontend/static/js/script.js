@@ -38,6 +38,8 @@ const router = async () => {
     document.querySelector(".page").innerHTML = await view.getHtml();
 
     console.log(view);
+
+    view.init();
 };
 
 window.addEventListener("popstate", router);
