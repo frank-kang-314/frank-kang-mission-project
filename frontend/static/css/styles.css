@@ -122,6 +122,8 @@ a {
 
     width: 80%; 
     margin: 3vh;
+
+    position: relative;
 }
 
 .stats {
@@ -137,25 +139,84 @@ a {
 }
 
 .chatbox-section {
-    flex-grow: 1;
-    flex-basis: 0;
-    transition: flex-grow 0.3s ease;
-    min-width: 0;
-
     display: flex;
     justify-content: center;
     align-items: center;
 
     font-size: 20px;
+
+    border: 1px solid black
+}
+
+.chatbox-section.split{
+    flex-grow: 1;
+    flex-basis: 0;
+    transition: flex-grow 0.3s ease;
+    min-width: 0;
+
+    cursor: pointer;
 }
 
 .chatbox-section.expanded {
     flex-grow: 3;
+
+    border: none;
 }
 
 .chatbox-section.hidden {
     flex-grow: 0;
     opacity: 0;
+}
+
+.chatbox-section .section-label {
+    transition: opacity 0.2s ease;
+}
+
+.chatbox-section.expanded .section-label {
+    opacity: 0;
+}
+
+.back-button {
+    position: absolute;
+    width: 8vh;
+    height: 20%;
+    
+    font-size: 20px;
+
+    border-radius: 10%;
+    background-color: white;
+
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+.back-button.visible {
+    display: block;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+#back-task {
+    top: 40%;
+    right: 1vh;
+}
+
+#back-reminder {
+    top: 40%;
+    left: 1vh;
+}
+
+#add-task {
+    background-color: #F6DADA;
+}
+
+#add-reminder {
+    background-color: #DCE8F6;
+}
+
+#add-task-or-reminder-back {
+    display: none;
 }
 
 .add-item-bubble-options {
