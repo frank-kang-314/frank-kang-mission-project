@@ -1,4 +1,5 @@
 import Home from "../views/Home.js";
+import Calendar from "../views/Calendar.js"
 
 const navigateTo = url => {
     history.pushState(null,null,url);
@@ -8,7 +9,7 @@ const navigateTo = url => {
 const router = async () => {
     const routes = [
         { path: "/", view: Home },
-        { path: "/calendar", view: () => console.log("Viewing calendar") },
+        { path: "/calendar", view: Calendar },
         { path: "/projects", view: () => console.log("Viewing projects") },
         { path: "/habits", view: () => console.log("Viewing habits") },
         { path: "/settings", view: () => console.log("Viewing settings") },
