@@ -40,14 +40,15 @@
 }
 
 .chatbox-section.expanded {
-    flex-grow: 3;
+    flex: 1;
 
     border: none;
 }
 
 .chatbox-section.hidden {
-    flex-grow: 0;
-    opacity: 0;
+    flex: 0;
+    width: 0;
+    overflow: hidden;
 }
 
 .chatbox-section .section-label {
@@ -101,10 +102,24 @@
     display: none;
 }
 
-.add-item-bubble-options {
+.add-item-field {
     display: none;
+    opacity: 0;
 }
 
-.chatbox-section.expanded .add-item-bubble-options {
-    display: flex;
+.add-item-field.visible {
+    display: block;
+    position: absolute;
+
+    opacity: 1;
+    
+    bottom: 1cqw;
+}
+
+.add-item-field.visible#new-task {
+    left: 1cqw;
+}
+
+.add-item-field.visible#new-reminder {
+    right: 1cqw;
 }
