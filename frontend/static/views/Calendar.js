@@ -19,6 +19,5 @@ export default class extends AbstractView {
             document.head.appendChild(link);
         })("/static/css/calendar.css");
         console.log("hello");
-        document.querySelector(".page").innerHTML = "";
     }
 }

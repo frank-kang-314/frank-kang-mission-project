@@ -18,7 +18,6 @@ export default class extends AbstractView {
             link.href = path;
             document.head.appendChild(link);
         })("/static/css/home.css");
-        document.querySelector(".page").innerHTML = "";
         
         const chatboxSections = document.querySelectorAll(".chatbox-section");
         const taskSection = document.getElementById("add-task");
