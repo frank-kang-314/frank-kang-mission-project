@@ -8,6 +8,10 @@
     position: relative;
 }
 
+.clickable {
+    cursor: pointer;
+}
+
 .stats {
     flex: 1;
 }
@@ -35,8 +39,6 @@
     flex-basis: 0;
     transition: flex-grow 0.3s ease;
     min-width: 0;
-
-    cursor: pointer;
 }
 
 .chatbox-section.expanded {
@@ -110,16 +112,23 @@
 .add-item-field.visible {
     display: block;
     position: absolute;
+    bottom: 1vw;
+
+    width: 80%;
 
     opacity: 1;
-    
-    bottom: 1cqw;
+    border: 0;
+
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 1.7cqw;
 }
 
 .add-item-field.visible#new-task {
-    left: 1cqw;
+    left: 1vw;
+    background-color: #F6DADA;
 }
 
 .add-item-field.visible#new-reminder {
-    right: 1cqw;
+    right: 1vw;
+    background-color: #DCE8F6;
 }
