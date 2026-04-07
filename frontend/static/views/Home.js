@@ -17,7 +17,7 @@ export default class extends AbstractView {
             link.rel = "stylesheet";
             link.href = path;
             document.head.appendChild(link);
-        })("/static/css/home.css");
+        })("./frontend/static/css/home.css");
         
         const chatboxSections = document.querySelectorAll(".chatbox-section");
 
