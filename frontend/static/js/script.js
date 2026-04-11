@@ -1,6 +1,8 @@
 import Home from "../views/Home.js";
 import Calendar from "../views/Calendar.js"
 
+const BASE_PATH = "/frank-kang-mission-project"
+
 const navigateTo = url => {
     history.pushState(null,null,url);
     router();
@@ -21,7 +23,7 @@ const router = async () => {
     const potentialMatches = routes.map(route => {
         return {
             route: route,
-            isMatch: location.pathname === route.path
+            isMatch: location.pathname === BASE_PATH + route.path
         }
     });
 
