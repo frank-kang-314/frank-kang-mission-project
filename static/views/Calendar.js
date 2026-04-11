@@ -1,5 +1,5 @@
 import AbstractView from "./AbstractView.js";
-import { html, css } from "../js/paths.js";
+import { BASE_PATH } from "../js/config.js";
 
 export default class extends AbstractView {
     constructor() {
@@ -8,14 +8,16 @@ export default class extends AbstractView {
     }
 
     async getHtml() {
-        const response = await fetch(html("calendar.html"));
+        const response = await fetch(`${BASE_PATH}/static/html/calendar.html`);
         return await response.text();
     }
 
     init () {
-        const link = document.createElement("link");
-        link.rel = "stylesheet";
-        link.href = css("calendar.css");
-        document.head.appendChild(link);
+        if (!document.querySelector('link[href*="calendar.css"]')) {
+            const link = document.createElement("link");
+            link.rel = "stylesheet";
+            link.href = `${BASE_PATH}/static/css/calendar.css`;
+            document.head.appendChild(link);
+        }
     }
 }

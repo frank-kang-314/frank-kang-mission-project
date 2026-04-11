@@ -1,7 +1,6 @@
 import Home from "../views/Home.js";
 import Calendar from "../views/Calendar.js";
-//frank-kang-mission-project
-const BASE_PATH = location.pathname.split("/")[1]; 
+import { BASE_PATH } from "./config.js";
 
 const navigateTo = url => {
     history.pushState(null, null, BASE_PATH + url);
@@ -10,7 +9,7 @@ const navigateTo = url => {
 
 const router = async () => {
 
-    const path = location.pathname.replace(BASE_PATH, "");
+    const path = location.pathname.replace(BASE_PATH, "") || "/";
 
     const routes = [
         { path: "/", view: Home },
@@ -41,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const link = e.target.closest("[data-link]");
     if (link) {
         e.preventDefault();
-        navigateTo(new URL(link.href).pathname);
+        navigateTo(new URL(link.href).pathname.replace(BASE_PATH, ""));
     }
 
   });
