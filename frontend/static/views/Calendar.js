@@ -1,5 +1,5 @@
 import AbstractView from "./AbstractView.js";
-import { html, css } from "../js/config.js";
+import { html, css } from "../js/paths.js";
 
 export default class extends AbstractView {
     constructor() {
@@ -8,7 +8,7 @@ export default class extends AbstractView {
     }
 
     async getHtml() {
-        const response = await fetch(html("home.html"));
+        const response = await fetch(html("calendar.html"));
         return await response.text();
     }
 

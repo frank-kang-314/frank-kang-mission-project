@@ -1,5 +1,5 @@
 import AbstractView from "./AbstractView.js";
-import { html, css } from "../js/config.js";
+import { html, css } from "../js/paths.js";
 
 export default class extends AbstractView {
     constructor() {
