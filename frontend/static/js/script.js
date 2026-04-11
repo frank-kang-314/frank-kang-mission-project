@@ -37,9 +37,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.body.addEventListener("click", e => {
 
-    if (e.target.matches("[data-link]")) {
-      e.preventDefault();
-      navigateTo(new URL(e.target.href).pathname);
+    const link = e.target.closest("[data-link]");
+    if (link) {
+        e.preventDefault();
+        navigateTo(new URL(link.href).pathname);
     }
 
   });
