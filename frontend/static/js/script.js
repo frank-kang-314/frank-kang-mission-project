@@ -3,7 +3,7 @@ import Calendar from "../views/Calendar.js";
 import { BASE_PATH } from "./config.js";
 
 const navigateTo = url => {
-    history.pushState(null, null, url);
+    history.pushState(null, null, BASE_PATH + url);
     router();
 };
 
