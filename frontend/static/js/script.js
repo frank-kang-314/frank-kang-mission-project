@@ -3,7 +3,7 @@ import Calendar from "../views/Calendar.js";
 import { BASE_PATH } from "./config.js";
 
 const navigateTo = url => {
-    history.pushState(null, null, BASE_PATH + url);
+    history.pushState(null, null, url);
     router();
 };
 
@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (e.target.matches("[data-link]")) {
       e.preventDefault();
-      navigateTo(e.target.pathname);
+      navigateTo(new URL(e.target.href).pathname);
     }
 
   });
