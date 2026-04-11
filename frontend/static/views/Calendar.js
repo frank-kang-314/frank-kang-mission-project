@@ -1,13 +1,14 @@
 import AbstractView from "AbstractView.js";
+import { BASE_PATH } from "./config.js";
 
 export default class extends AbstractView {
     constructor() {
         super();
-        this.setTitle('CookCookCook - Calendar')
+        this.setTitle('CookCookCook - Calendar');
     }
 
     async getHtml() {
-        const response = await fetch("../html/calendar.html");
+        const response = await fetch(`${BASE_PATH}/frontend/static/html/calendar.html`);
         return await response.text();
     }
 
@@ -18,6 +19,5 @@ export default class extends AbstractView {
             link.href = path;
             document.head.appendChild(link);
         })("../css/calendar.css");
-        console.log("hello");
     }
 }

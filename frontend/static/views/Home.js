@@ -1,4 +1,5 @@
 import AbstractView from ".AbstractView.js";
+import { BASE_PATH } from "./config.js";
 
 export default class extends AbstractView {
     constructor() {
@@ -7,7 +8,7 @@ export default class extends AbstractView {
     }
 
     async getHtml() {
-        const response = await fetch("../html/home.html");
+        const response = await fetch(`${BASE_PATH}/frontend/static/html/home.html`);
         return await response.text();
     }
 
