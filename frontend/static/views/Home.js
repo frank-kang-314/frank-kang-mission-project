@@ -8,17 +8,15 @@ export default class extends AbstractView {
     }
 
     async getHtml() {
-        const response = await fetch(`${BASE_PATH}/frontend/static/html/home.html`);
+        const response = await fetch(html("home.html"));
         return await response.text();
     }
 
     init () {
-        ((path) => {
-            const link = document.createElement("link");
-            link.rel = "stylesheet";
-            link.href = path;
-            document.head.appendChild(link);
-        })(`${BASE_PATH}/frontend/static/css/home.css`);
+        const link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.href = css("home.css");
+        document.head.appendChild(link);
         
         const chatboxSections = document.querySelectorAll(".chatbox-section");
 

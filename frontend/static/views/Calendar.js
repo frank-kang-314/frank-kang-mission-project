@@ -8,16 +8,14 @@ export default class extends AbstractView {
     }
 
     async getHtml() {
-        const response = await fetch(`${BASE_PATH}/frontend/static/html/calendar.html`);
+        const response = await fetch(html("home.html"));
         return await response.text();
     }
 
     init () {
-        ((path) => {
-            const link = document.createElement("link");
-            link.rel = "stylesheet";
-            link.href = path;
-            document.head.appendChild(link);
-        })(`${BASE_PATH}/frontend/static/css/calendar.css`);
+        const link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.href = css("calendar.css");
+        document.head.appendChild(link);
     }
 }
