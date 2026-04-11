@@ -1,5 +1,5 @@
-import AbstractView from ".AbstractView.js";
-import { BASE_PATH } from "./config.js";
+import AbstractView from "./AbstractView.js";
+import { BASE_PATH } from "../static/js/config.js";
 
 export default class extends AbstractView {
     constructor() {
@@ -18,7 +18,7 @@ export default class extends AbstractView {
             link.rel = "stylesheet";
             link.href = path;
             document.head.appendChild(link);
-        })("../css/home.css");
+        })(`${BASE_PATH}/frontend/static/css/home.css`);
         
         const chatboxSections = document.querySelectorAll(".chatbox-section");
 

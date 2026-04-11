@@ -1,6 +1,6 @@
 import Home from "../views/Home.js";
 import Calendar from "../views/Calendar.js";
-import { BASE_PATH } from "./config.js";
+import { BASE_PATH } from "../static/js/config.js";
 
 const navigateTo = url => {
     history.pushState(null, null, BASE_PATH + url);
