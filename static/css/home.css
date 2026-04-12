@@ -181,3 +181,14 @@
     font-family: "Nunito Sans", sans-serif;
     font-size: 2cqh;
 }
+
+#user-profile-box {
+    width: 10vw;
+    height: 10vh;
+    display: flex;
+}
+
+#user-profile-name-and-email {
+    display: flex;
+    flex-direction: column;
+}

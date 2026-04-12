@@ -26,7 +26,11 @@
                     <img style="justify-self: flex-start;" src="assets/images/google-logo.svg"/>
                     <p>Log In</p>
                 </button>
-                <div id="show-user-profile"></div>
+                <div id="user-profile-box">
+                    <div id="user-profile-name-and-email">
+
+                    </div>
+                </div>
             </div>
             <div class="setup-step" id="template">
                 <!--This is here in case I want to add more login steps later.-->
@@ -109,22 +113,26 @@
             document.getElementById("login-prompt").innerText = "Login successful!";
             document.getElementById('authorize-button').style.visibility = 'hidden';
 
-            const userProfileBox = document.getElementById("show-user-profile");
+            const userProfileBox = document.getElementById("user-profile-box");
+            const userProfileNameAndEmailBox = document.getElementById("user-profile-name-and-email");
 
             const userProfilePicture = document.createElement("img");
             userProfilePicture.src = profile.picture;
             userProfilePicture.id = "profile-picture";
-            userProfileBox.appendChild(userProfilePicture);
+            userProfilePicture.style = "height: 80%";
+            userProfilePictureBox.appendChild(userProfilePicture)[0];
 
             const userProfileName = document.createElement("p");
             userProfileName.textContent = profile.name;
             userProfileName.id = "profile-name";
-            userProfileBox.appendChild(userProfileName);
+            userProfilePicture.style = "font-size: 3cqh";
+            userProfileNameAndEmailBox.appendChild(userProfileName);
 
             const userProfileEmail = document.createElement("p");
             userProfileEmail.textContent = profile.email;
             userProfileEmail.id = "profile-email";
-            userProfileBox.appendChild(userProfileEmail);
+            userProfileEmail.style = "font-size: 2cqh";
+            userProfileNameAndEmailBox.appendChild(userProfileEmail);
             };
 
             if (gapi.client.getToken() === null) {
