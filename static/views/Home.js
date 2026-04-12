@@ -25,6 +25,8 @@ export default class extends AbstractView {
         const startAppButton = document.getElementById("start-app");
 
         const loginSetupPage = document.getElementById("login-page");
+        
+        const homePageElements = document.querySelectorAll(".hide-before-login");
 
         getStartedButton.addEventListener("click", ()=> {
             welcomeSetupPage.classList.remove("active");
@@ -34,7 +36,7 @@ export default class extends AbstractView {
         startAppButton.addEventListener("click", ()=> {
             loginSetupPage.classList.remove("active");
             document.querySelector(".login").style.display = "none";
-            
+
             homePageElements.forEach(el => el.classList.remove("hide-before-login"));
             document.querySelector(".sidebar").style.display = "flex";
             document.querySelector(".page").style.display = "block";
