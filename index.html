@@ -55,8 +55,7 @@
 
         const DISCOVERY_DOCS = [
             'https://sheets.googleapis.com/$discovery/rest?version=v4',
-            'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest',
-            'https://www.googleapis.com/discovery/v1/apis/oauth2/v2/rest'
+            'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'
         ];
 
         const SCOPES = 'https://www.googleapis.com/auth/spreadsheets https://www.googleapis.com/auth/calendar openid profile email';
@@ -88,8 +87,9 @@
             maybeEnableButtons();
         }
 
+        document.getElementById('authorize-button').disabled = true;
+
         function maybeEnableButtons() {
-            document.getElementById('authorize-button').disabled = true;
             if (gapiInited && gisInited) {
                 document.getElementById('authorize-button').disabled = false;
             }
@@ -101,7 +101,9 @@
                 throw (resp);
             }
             async function loadUserProfile() {
-                const response = await gapi.client.oauth2.userinfo.get();
+                const response = await fetch('https://www.googleapis.com/oauth2/v2/userinfo', {
+                    headers: { Authorization: `Bearer ${token.access_token}` },
+                });
                 const profile = response.result;
 
                 // profile contains:
