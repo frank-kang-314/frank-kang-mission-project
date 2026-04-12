@@ -12,7 +12,25 @@ let tokenClient;
 let gapiInited = false;
 let gisInited = false;
 
+function enterApp() {
+    console.log("Enter app");
+
+    document.querySelector('.login').style.display = 'none';
+
+    document.querySelectorAll(".hide-before-login").forEach(el => {
+        el.classList.remove("hide-before-login");
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+
+    const loggedIn = localStorage.getItem("loggedIn");
+
+    if (loggedIn === "true") {
+        enterApp();
+        return;
+    }
+
     document.getElementById('authorize-button').disabled = true;
     document.getElementById('start-app').style.visibility = 'hidden';
 
@@ -22,14 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.getElementById('start-app').addEventListener('click', () => {
-        console.log("Enter app");
-        document.getElementById('login-page').classList.remove('active');
-        document.querySelector('.login').style.display = 'none';
-        document.querySelectorAll(".hide-before-login").forEach(element => {
-            element.classList.remove(".hide-before-login")
-        });
-        document.querySelector('.sidebar').style.display = 'flex';
-        document.querySelector('.page').style.display = 'block';
+        enterApp();
     });
 });
 
@@ -72,6 +83,9 @@ function handleAuthClick() {
         headers: { Authorization: `Bearer ${token.access_token}` },
     });
     const profile = await response.json();
+
+    localStorage.setItem("loggedIn", "true");
+    localStorage.setItem("userProfile", JSON.stringify(profile));
 
     document.getElementById("login-prompt").innerText = "Login successful!";
     document.getElementById("login-prompt").style.fontSize = "3cqh";
