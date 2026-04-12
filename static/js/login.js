@@ -36,6 +36,7 @@ function gisLoaded() {
 }
 
 document.getElementById('authorize-button').disabled = true;
+document.getElementById("start-app").style.visibility= "hidden";
 
 function maybeEnableButtons() {
     if (gapiInited && gisInited) {
@@ -55,7 +56,9 @@ function handleAuthClick() {
     const profile = await response.json();
 
     document.getElementById("login-prompt").innerText = "Login successful!";
+    document.getElementById("login-prompt").style.fontSize = "3cqh";
     document.getElementById('authorize-button').style.visibility = 'hidden';
+    document.getElementById("start-app").style.visibility= "visible";
 
     const userProfileBox = document.getElementById("user-profile-box");
     const userProfileNameAndEmailBox = document.getElementById("user-profile-name-and-email");
@@ -63,7 +66,7 @@ function handleAuthClick() {
     const userProfilePicture = document.createElement("img");
     userProfilePicture.src = profile.picture;
     userProfilePicture.id = "profile-picture";
-    userProfilePicture.style.height = "100%";
+    userProfilePicture.style.height = "80%";
     userProfilePicture.style.width = "auto";
     userProfilePicture.style.marginRight = "1vw";
     userProfilePicture.style.borderRadius = "50%";
@@ -72,7 +75,7 @@ function handleAuthClick() {
     const userProfileName = document.createElement("p");
     userProfileName.textContent = profile.name;
     userProfileName.id = "profile-name";
-    userProfileName.style.fontSize = "3.5cqh";
+    userProfileName.style.fontSize = "2.5cqh";
     userProfileNameAndEmailBox.appendChild(userProfileName);
 
     const userProfileEmail = document.createElement("p");
