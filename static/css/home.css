@@ -169,7 +169,7 @@
     border-radius: 4%;
 }
 
-#authorize-button {
+#authorize-button{
     border: 1px solid black;
     display: flex;
     flex-direction: row;

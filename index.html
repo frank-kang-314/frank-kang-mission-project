@@ -26,6 +26,7 @@
                     <img style="justify-self: flex-start;" src="assets/images/google-logo.svg"/>
                     <p>Log In</p>
                 </button>
+                <div id="show-user-profile"></div>
             </div>
             <div class="setup-step" id="template">
                 <!--This is here in case I want to add more login steps later.-->
@@ -55,15 +56,16 @@
         const DISCOVERY_DOCS = [
             'https://sheets.googleapis.com/$discovery/rest?version=v4',
             'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest',
-            ];
+            'https://www.googleapis.com/discovery/v1/apis/oauth2/v2/rest'
+        ];
 
-        const SCOPES = 'https://www.googleapis.com/auth/spreadsheets https://www.googleapis.com/auth/calendar';
+        const SCOPES = 'https://www.googleapis.com/auth/spreadsheets https://www.googleapis.com/auth/calendar openid profile email';
 
         let tokenClient;
         let gapiInited = false;
         let gisInited = false;
 
-        document.getElementById('authorize_button').style.visibility = 'hidden';
+        document.getElementById('authorize-button').style.visibility = 'hidden';
 
         function gapiLoaded() {
             gapi.load('client', initializeGapiClient);
@@ -90,7 +92,7 @@
 
         function maybeEnableButtons() {
             if (gapiInited && gisInited) {
-            document.getElementById('authorize_button').style.visibility = 'visible';
+            document.getElementById('authorize-button').style.visibility = 'visible';
             }
         }
 
@@ -99,8 +101,42 @@
             if (resp.error !== undefined) {
                 throw (resp);
             }
+            async function loadUserProfile() {
+                const response = await gapi.client.oauth2.userinfo.get();
+                const profile = response.result;
+
+                // profile contains:
+                // profile.name        → "Frank Kang"
+                // profile.email       → "frank@gmail.com"
+                // profile.picture     → URL to their profile photo
+                // profile.given_name  → "Frank"
+                // profile.family_name → "Kang"
+
+                return profile;
+            }
+
+            const response = await gapi.client.oauth2.userinfo.get();
+            const profile = response.result;
+
             document.getElementById("login-prompt").innerText = "Login successful!";
-            document.getElementById('authorize_button').style.visibility = 'hidden';
+            document.getElementById('authorize-button').style.visibility = 'hidden';
+
+            const userProfileBox = document.getElementById("show-user-profile");
+
+            const userProfilePicture = document.createElement("img");
+            userProfilePicture.src = profile.picture;
+            userProfilePicture.id = "profile-picture";
+            userProfileBox.appendChild(userProfilePicture);
+
+            const userProfileName = document.createElement("p");
+            userProfileName.textContent = profile.name;
+            userProfileName.id = "profile-name";
+            userProfileBox.appendChild(userProfileName);
+
+            const userProfileEmail = document.createElement("p");
+            userProfileEmail.textContent = profile.email;
+            userProfileEmail.id = "profile-email";
+            userProfileBox.appendChild(userProfileEmail);
             };
 
             if (gapi.client.getToken() === null) {
