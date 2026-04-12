@@ -19,28 +19,6 @@ export default class extends AbstractView {
             link.href = `${BASE_PATH}/static/css/home.css`;
             document.head.appendChild(link);
         }
-
-        const welcomeSetupPage = document.getElementById("welcome-page");
-        const getStartedButton = document.getElementById("get-started");
-        const startAppButton = document.getElementById("start-app");
-
-        const loginSetupPage = document.getElementById("login-page");
-        
-        const homePageElements = document.querySelectorAll(".hide-before-login");
-
-        getStartedButton.addEventListener("click", ()=> {
-            welcomeSetupPage.classList.remove("active");
-            loginSetupPage.classList.add("active");
-        });
-
-        startAppButton.addEventListener("click", ()=> {
-            loginSetupPage.classList.remove("active");
-            document.querySelector(".login").style.display = "none";
-
-            homePageElements.forEach(el => el.classList.remove("hide-before-login"));
-            document.querySelector(".sidebar").style.display = "flex";
-            document.querySelector(".page").style.display = "block";
-        });
         
         const chatboxSections = document.querySelectorAll(".chatbox-section");
 

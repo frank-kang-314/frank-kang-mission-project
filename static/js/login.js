@@ -12,7 +12,24 @@ let tokenClient;
 let gapiInited = false;
 let gisInited = false;
 
-function gapiLoaded() {
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('authorize-button').disabled = true;
+    document.getElementById('start-app').style.visibility = 'hidden';
+
+    document.getElementById('get-started').addEventListener('click', () => {
+        document.getElementById('welcome-page').classList.remove('active');
+        document.getElementById('login-page').classList.add('active');
+    });
+
+    document.getElementById('start-app').addEventListener('click', () => {
+        document.getElementById('login-page').classList.remove('active');
+        document.querySelector('.login').style.display = 'none';
+        document.querySelector('.sidebar').style.display = 'flex';
+        document.querySelector('.page').style.display = 'block';
+    });
+});
+
+window.gapiLoaded = function() {
     gapi.load('client', initializeGapiClient);
 }
 
@@ -25,18 +42,15 @@ async function initializeGapiClient() {
     maybeEnableButtons();
 }
 
-function gisLoaded() {
+window.gisLoaded = function() {
     tokenClient = google.accounts.oauth2.initTokenClient({
-    client_id: CLIENT_ID,
-    scope: SCOPES,
-    callback: '',
+        client_id: CLIENT_ID,
+        scope: SCOPES,
+        callback: '',
     });
     gisInited = true;
     maybeEnableButtons();
 }
-
-document.getElementById('authorize-button').disabled = true;
-document.getElementById("start-app").style.visibility= "hidden";
 
 function maybeEnableButtons() {
     if (gapiInited && gisInited) {
