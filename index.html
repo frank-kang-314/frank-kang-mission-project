@@ -21,8 +21,11 @@
                 <button id="get-started">Get started &rarr;</button>
             </div>
             <div class="setup-step active" id="login-page">
-                <button id="authorize_button" onclick="handleAuthClick()">Authorize</button>
-                <pre id="content" style="white-space: pre-wrap;"></pre>
+                <p style="font-size: 2cqh; margin-bottom: 3vh" id="login-prompt">Please login with your amersol Google account to continue</p>
+                <button id="authorize-button" onclick="handleAuthClick()">
+                    <img style="justify-self: flex-start;" src="assets/images/google-logo.svg"/>
+                    <p>Log In</p>
+                </button>
             </div>
             <div class="setup-step" id="template">
                 <!--This is here in case I want to add more login steps later.-->
@@ -96,26 +99,17 @@
             if (resp.error !== undefined) {
                 throw (resp);
             }
-            document.getElementById('authorize_button').innerText = 'Refresh';
+            document.getElementById("login-prompt").innerText = "Login successful!";
+            document.getElementById('authorize_button').style.visibility = 'hidden';
             };
 
             if (gapi.client.getToken() === null) {
             // Prompt the user to select a Google Account and ask for consent to share their data
             // when establishing a new session.
-            tokenClient.requestAccessToken({prompt: 'consent'});
+                tokenClient.requestAccessToken({prompt: 'consent'});
             } else {
             // Skip display of account chooser and consent dialog for an existing session.
-            tokenClient.requestAccessToken({prompt: ''});
-            }
-        }
-
-        function handleSignoutClick() {
-            const token = gapi.client.getToken();
-            if (token !== null) {
-            google.accounts.oauth2.revoke(token.access_token);
-            gapi.client.setToken('');
-            document.getElementById('content').innerText = '';
-            document.getElementById('authorize_button').innerText = 'Authorize';
+                tokenClient.requestAccessToken({prompt: ''});
             }
         }
         
