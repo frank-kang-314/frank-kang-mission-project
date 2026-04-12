@@ -19,6 +19,12 @@ export default class extends AbstractView {
             link.href = `${BASE_PATH}/static/css/home.css`;
             document.head.appendChild(link);
         }
+
+        const getStartedButton = document.getElementById("welcome");
+
+        getStartedButton.addEventListener("click", ()=> {
+            console.log("Hello World");
+        });
         
         const chatboxSections = document.querySelectorAll(".chatbox-section");
 

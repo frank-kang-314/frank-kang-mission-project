@@ -4,10 +4,32 @@
         <meta charset="UTF-8">
         <title>CookCookCook - Home</title>
         <link rel="stylesheet" href="static/css/styles.css"/>
+        
+        <!--REMOVE LATER; FOR TESTING ONLY-->
+        <!-- <link rel="stylesheet" href="static/css/home.css"/> -->
+        <!--REMOVE LATER; FOR TESTING ONLY-->
+
         <link rel="icon" href="assets/images/main-logo-500.png"/>
     </head>                                                     
-    <body>                                              
-        <nav class="sidebar">
+    <body>
+        <div class="login">
+            <div class="setup-step active" id="welcome">
+                <p style="font-size: 4cqh; margin-bottom: 0.5vh">Welcome to</p>
+                <p style="font-size: 8cqh; margin-bottom: 1vh">CookCookCook</p>
+                <p style="font-size: 1.8cqh; margin-bottom: 3vh">a project by Frank Kang</p>
+                <button id="get-started">Get started &rarr;</button>
+            </div>
+            <div class="setup-step">
+                Hello
+            </div>
+            <div class="setup-step">
+                Hello
+            </div>
+            <div class="setup-step">
+                Hello
+            </div>
+        </div>                                              
+        <nav class="sidebar hide-before-login">
             <ul>
                 <li><a href="/" data-link><img src="assets/images/main-logo-500.png" width="80%"></a></li>
                 <li><a href="/calendar" data-link>Calendar</a></li>
@@ -17,7 +39,7 @@
                 <li><a href="/profile" data-link>Profile</a></li>
             </ul>
         </nav>
-        <div class="page">
+        <div class="page hide-before-login">
 
         </div>
         <script type="module" src="static/js/script.js"></script>
