@@ -22,8 +22,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.getElementById('start-app').addEventListener('click', () => {
+        console.log("Enter app");
         document.getElementById('login-page').classList.remove('active');
         document.querySelector('.login').style.display = 'none';
+        document.querySelectorAll(".hide-before-login").forEach(element => {
+            element.classList.remove(".hide-before-login")
+        });
         document.querySelector('.sidebar').style.display = 'flex';
         document.querySelector('.page').style.display = 'block';
     });
