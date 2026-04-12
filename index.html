@@ -65,8 +65,6 @@
         let gapiInited = false;
         let gisInited = false;
 
-        document.getElementById('authorize-button').style.visibility = 'hidden';
-
         function gapiLoaded() {
             gapi.load('client', initializeGapiClient);
         }
@@ -91,8 +89,9 @@
         }
 
         function maybeEnableButtons() {
+            document.getElementById('authorize-button').disabled = true;
             if (gapiInited && gisInited) {
-            document.getElementById('authorize-button').style.visibility = 'visible';
+                document.getElementById('authorize-button').disabled = false;
             }
         }
 
