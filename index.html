@@ -119,19 +119,21 @@
             const userProfilePicture = document.createElement("img");
             userProfilePicture.src = profile.picture;
             userProfilePicture.id = "profile-picture";
-            userProfilePicture.style = "height: 80%";
-            userProfilePictureBox.appendChild(userProfilePicture)[0];
+            userProfilePicture.style.height = "100%";
+            userProfilePicture.style.width = "auto";
+            userProfilePicture.style.borderRadius = "50%";
+            userProfileBox.appendChild(userProfilePicture);
 
             const userProfileName = document.createElement("p");
             userProfileName.textContent = profile.name;
             userProfileName.id = "profile-name";
-            userProfilePicture.style = "font-size: 3cqh";
+            userProfileName.style.fontSize = "3cqh";
             userProfileNameAndEmailBox.appendChild(userProfileName);
 
             const userProfileEmail = document.createElement("p");
             userProfileEmail.textContent = profile.email;
             userProfileEmail.id = "profile-email";
-            userProfileEmail.style = "font-size: 2cqh";
+            userProfileEmail.style.fontSize = "2cqh";
             userProfileNameAndEmailBox.appendChild(userProfileEmail);
             };
 
