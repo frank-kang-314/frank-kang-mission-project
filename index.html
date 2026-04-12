@@ -21,7 +21,7 @@
                 <button id="get-started">Get started &rarr;</button>
             </div>
             <div class="setup-step" id="login-page">
-                <p style="font-size: 2cqh; margin-bottom: 3vh" id="login-prompt">Please login with your amersol Google account to continue</p>
+                <p style="font-size: 2cqh; margin-bottom: 2vh" id="login-prompt">Please login with your amersol Google account to continue</p>
                 <button id="authorize-button" onclick="handleAuthClick()">
                     <img style="justify-self: flex-start;" src="assets/images/google-logo.svg"/>
                     <p>Log In</p>
@@ -121,19 +121,20 @@
             userProfilePicture.id = "profile-picture";
             userProfilePicture.style.height = "100%";
             userProfilePicture.style.width = "auto";
+            userProfilePicture.style.marginRight = "1vw";
             userProfilePicture.style.borderRadius = "50%";
-            userProfileBox.appendChild(userProfilePicture);
+            userProfileBox.prepend(userProfilePicture);
 
             const userProfileName = document.createElement("p");
             userProfileName.textContent = profile.name;
             userProfileName.id = "profile-name";
-            userProfileName.style.fontSize = "3cqh";
+            userProfileName.style.fontSize = "2cqh";
             userProfileNameAndEmailBox.appendChild(userProfileName);
 
             const userProfileEmail = document.createElement("p");
             userProfileEmail.textContent = profile.email;
             userProfileEmail.id = "profile-email";
-            userProfileEmail.style.fontSize = "2cqh";
+            userProfileEmail.style.fontSize = "1cqh";
             userProfileNameAndEmailBox.appendChild(userProfileEmail);
             };
 

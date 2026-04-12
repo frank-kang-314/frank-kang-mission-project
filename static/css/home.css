@@ -186,6 +186,8 @@
     width: 16vw;
     height: 6vh;
     display: flex;
+    border: 1px solid black;
+    border-radius: 4%;
 }
 
 #user-profile-name-and-email {
