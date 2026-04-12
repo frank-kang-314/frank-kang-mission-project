@@ -128,14 +128,17 @@
             const userProfileName = document.createElement("p");
             userProfileName.textContent = profile.name;
             userProfileName.id = "profile-name";
-            userProfileName.style.fontSize = "2cqh";
+            userProfileName.style.fontSize = "3.5cqh";
             userProfileNameAndEmailBox.appendChild(userProfileName);
 
             const userProfileEmail = document.createElement("p");
             userProfileEmail.textContent = profile.email;
             userProfileEmail.id = "profile-email";
-            userProfileEmail.style.fontSize = "1cqh";
+            userProfileEmail.style.fontSize = "1.5cqh";
             userProfileNameAndEmailBox.appendChild(userProfileEmail);
+
+            userProfileBox.style.border = "1px solid black";
+            userProfileBox.style.borderRadius = "4%";
             };
 
             if (gapi.client.getToken() === null) {
