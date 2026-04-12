@@ -20,10 +20,14 @@ export default class extends AbstractView {
             document.head.appendChild(link);
         }
 
-        const getStartedButton = document.getElementById("welcome");
+        const welcomeSetupPage = document.getElementById("welcome-page");
+        const getStartedButton = document.getElementById("get-started");
+
+        const loginSetupPage = document.getElementById("login-page");
 
         getStartedButton.addEventListener("click", ()=> {
-            console.log("Hello World");
+            welcomeSetupPage.classList.remove("active");
+            loginSetupPage.classList.add("active");
         });
         
         const chatboxSections = document.querySelectorAll(".chatbox-section");

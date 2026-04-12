@@ -6,27 +6,25 @@
         <link rel="stylesheet" href="static/css/styles.css"/>
         
         <!--REMOVE LATER; FOR TESTING ONLY-->
-        <!-- <link rel="stylesheet" href="static/css/home.css"/> -->
+        <link rel="stylesheet" href="static/css/home.css"/>
         <!--REMOVE LATER; FOR TESTING ONLY-->
 
         <link rel="icon" href="assets/images/main-logo-500.png"/>
     </head>                                                     
     <body>
         <div class="login">
-            <div class="setup-step active" id="welcome">
+            <!--Later, make it so that when a user enters the website, it detects if he/she is already logged in-->
+            <div class="setup-step active" id="welcome-page">
                 <p style="font-size: 4cqh; margin-bottom: 0.5vh">Welcome to</p>
                 <p style="font-size: 8cqh; margin-bottom: 1vh">CookCookCook</p>
                 <p style="font-size: 1.8cqh; margin-bottom: 3vh">a project by Frank Kang</p>
                 <button id="get-started">Get started &rarr;</button>
             </div>
-            <div class="setup-step">
+            <div class="setup-step" id="login-page">
                 Hello
             </div>
-            <div class="setup-step">
-                Hello
-            </div>
-            <div class="setup-step">
-                Hello
+            <div class="setup-step" id="template">
+                <!--This is here in case I want to add more login steps later.-->
             </div>
         </div>                                              
         <nav class="sidebar hide-before-login">
