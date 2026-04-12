@@ -185,6 +185,7 @@ button {
     height: 10vh;
     padding: 1vh 1vw;
     display: flex;
+    margin-bottom: 3vh;
 }
 
 #user-profile-name-and-email {
