@@ -22,6 +22,16 @@ function enterApp() {
     });
 }
 
+export function applyLoginState() {
+    if (localStorage.getItem("loggedIn") === "true") {
+
+        document.querySelectorAll(".hide-before-login").forEach(el => {
+            el.classList.remove("hide-before-login");
+        });
+
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
 
     const loggedIn = localStorage.getItem("loggedIn");
