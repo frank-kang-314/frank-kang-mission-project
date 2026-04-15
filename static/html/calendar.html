@@ -1,1 +1,37 @@
-<p>Hello</p>
+<div class="calendar-page">
+
+    <div class="calendar-header">
+        <div class="calendar-nav">
+            <button id="cal-prev">&#8249;</button>
+            <span id="cal-month-label"></span>
+            <button id="cal-next">&#8250;</button>
+        </div>
+        <div class="calendar-toggle-row">
+            <span class="toggle-label">All Events</span>
+            <label class="toggle-switch">
+                <input type="checkbox" id="cal-toggle">
+                <span class="toggle-slider"></span>
+            </label>
+            <span class="toggle-label">App Tasks Only</span>
+        </div>
+    </div>
+
+    <div class="calendar-grid-header">
+        <span>Sun</span><span>Mon</span><span>Tue</span>
+        <span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+    </div>
+
+    <div class="calendar-grid" id="calendar-grid"></div>
+
+    <!-- Day pop-up -->
+    <div class="popup" id="popup-day">
+        <div class="popup-inner">
+            <div class="popup-header">
+                <span id="popup-day-title"></span>
+                <button class="popup-close" id="close-day-popup">✕</button>
+            </div>
+            <div id="popup-day-events"></div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,249 @@
+.calendar-page {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 2vh 2vw;
+    box-sizing: border-box;
+}
+
+/* ── Header ── */
+.calendar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5vh;
+}
+
+.calendar-nav {
+    display: flex;
+    align-items: center;
+    gap: 1.5vw;
+    font-size: 2cqw;
+    font-weight: 700;
+}
+
+.calendar-nav button {
+    background: none;
+    border: none;
+    font-size: 3cqw;
+    cursor: pointer;
+    padding: 0 0.3vw;
+    line-height: 1;
+}
+
+.calendar-nav button:hover {
+    color: #7aaed6;
+}
+
+/* ── Toggle ── */
+.calendar-toggle-row {
+    display: flex;
+    align-items: center;
+    gap: 0.8vw;
+    font-size: 1.4cqw;
+}
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 3.5vw;
+    height: 1.8vh;
+    min-width: 40px;
+    min-height: 20px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider {
+    position: absolute;
+    inset: 0;
+    background-color: #ccc;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.toggle-slider::before {
+    content: "";
+    position: absolute;
+    height: 80%;
+    aspect-ratio: 1;
+    left: 4%;
+    top: 10%;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.2s;
+}
+
+.toggle-switch input:checked + .toggle-slider {
+    background-color: #7aaed6;
+}
+
+.toggle-switch input:checked + .toggle-slider::before {
+    transform: translateX(calc(3.5vw - 1.8vh - 4%));
+}
+
+/* ── Day-name header row ── */
+.calendar-grid-header {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.3cqw;
+    color: #999;
+    margin-bottom: 0.5vh;
+}
+
+/* ── Main grid ── */
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-auto-rows: 1fr;
+    flex: 1;
+    gap: 1px;
+    background-color: #ddd;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.cal-cell {
+    background-color: #fafafa;
+    padding: 0.5vh 0.5vw;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3vh;
+    cursor: pointer;
+    transition: background-color 0.15s;
+    min-height: 10vh;
+    overflow: hidden;
+}
+
+.cal-cell:hover {
+    background-color: #f0f0f0;
+}
+
+.cal-cell.empty {
+    background-color: #f5f5f5;
+    cursor: default;
+}
+
+.cal-cell.today .cal-date {
+    background-color: #7aaed6;
+    color: white;
+    border-radius: 50%;
+    width: 2.2vh;
+    height: 2.2vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cal-date {
+    font-size: 1.2cqw;
+    font-weight: 700;
+    margin-bottom: 0.2vh;
+}
+
+.cal-event-pill {
+    background-color: #DCE8F6;
+    border-radius: 4px;
+    font-size: 1cqw;
+    padding: 0.15vh 0.4vw;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #333;
+}
+
+.cal-event-pill.app-task {
+    background-color: #d4f0dc;
+}
+
+.cal-overflow {
+    font-size: 1cqw;
+    color: #999;
+    padding-left: 0.2vw;
+}
+
+/* ── Pop-up (reuse home.css popup styles if shared, else define here) ── */
+.popup {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.3);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup.open {
+    display: flex;
+}
+
+.popup-inner {
+    background: white;
+    border-radius: 12px;
+    padding: 2vh 2vw;
+    min-width: 22vw;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+}
+
+.popup-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5vh;
+    font-weight: 700;
+    font-size: 1.8cqw;
+}
+
+.popup-close {
+    background: none;
+    border: none;
+    font-size: 1.5cqw;
+    cursor: pointer;
+    padding: 0;
+}
+
+/* ── Day pop-up events list ── */
+#popup-day-events {
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}
+
+.day-event-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 0.8vh 1vw;
+    font-size: 1.4cqw;
+}
+
+.day-event-title {
+    font-weight: 600;
+}
+
+.day-event-time {
+    color: #888;
+    font-size: 1.2cqw;
+    margin-left: 1vw;
+    white-space: nowrap;
+}
+
+.day-event-empty {
+    color: #aaa;
+    font-size: 1.3cqw;
+    text-align: center;
+    padding: 2vh 0;
+}
