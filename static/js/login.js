@@ -41,7 +41,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    document.getElementById('authorize-button').disabled = true;
     document.getElementById('start-app').style.visibility = 'hidden';
 
     maybeEnableButtons();
@@ -71,12 +70,6 @@ async function initializeGapiClient() {
     });
 
     // Load all needed client libraries AFTER init completes
-    await Promise.all([
-        gapi.client.load("sheets", "v4"),
-        gapi.client.load("calendar", "v3"),
-        gapi.client.load("drive", "v3"),
-    ]);
-
     gapiInited = true;
     maybeEnableButtons();
 }
@@ -92,11 +85,13 @@ window.addEventListener("gis-loaded", () => {
 });
 
 function maybeEnableButtons() {
+    const btn = document.getElementById('authorize-button');
+    if (!btn) return;
+
     if (gapiInited && gisInited) {
-        const btn = document.getElementById('authorize-button');
-        if (btn) {
-            btn.disabled = false;
-        }
+        btn.disabled = false;
+    } else {
+        btn.disabled = true;
     }
 }
 
