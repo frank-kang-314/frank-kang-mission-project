@@ -62,7 +62,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 window.gapiLoaded = function() {
     gapi.load('client', initializeGapiClient);
-    gapi.client.load("drive", "v3");
 }
 
 async function initializeGapiClient() {
@@ -70,6 +69,14 @@ async function initializeGapiClient() {
         apiKey: API_KEY,
         discoveryDocs: DISCOVERY_DOCS,
     });
+
+    // Load all needed client libraries AFTER init completes
+    await Promise.all([
+        gapi.client.load("sheets", "v4"),
+        gapi.client.load("calendar", "v3"),
+        gapi.client.load("drive", "v3"),
+    ]);
+
     gapiInited = true;
     maybeEnableButtons();
 }
