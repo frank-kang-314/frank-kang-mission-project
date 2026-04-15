@@ -136,7 +136,7 @@ function handleAuthClick() {
     userProfileNameAndEmailBox.appendChild(userProfileEmail);
 
     userProfileBox.style.border = "1px solid black";
-    userProfileBox.style.borderRadius = "4%";
+    userProfileBox.style.borderRadius = "15px";
     };
 
     if (gapi.client.getToken() === null) {

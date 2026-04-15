@@ -1,11 +1,13 @@
 .profile-box {
     height: 5vw;
-    padding: 10px;
+    padding: 2vh 3vw;
     display: inline-flex;
     flex-direction: row;
     align-items: center;
     border: 1px solid black;
-    border-radius: 10%;
+    border-radius: 15px;
+
+    margin-bottom: 5vw;
 }
 
 .profile-box img {
