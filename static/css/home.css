@@ -76,9 +76,12 @@
 }
 
 .back-button.visible {
-    display: block;
     opacity: 1;
     pointer-events: auto;
+}
+
+.back-button p {
+    margin: 0;
 }
 
 #back-task {
