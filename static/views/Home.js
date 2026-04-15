@@ -294,7 +294,10 @@ export default class extends AbstractView {
         }
     }
 
-    document.getElementById("bubble-sort").addEventListener("click", openSortPopup);
+    document.getElementById("bubble-sort").addEventListener("click", (e) => {
+        e.stopPropagation();
+        openSortPopup();
+    });
     closeSortBtn.addEventListener("click", () => closePopup(popupSort));
 
     openAddFolder.addEventListener("click", () => {
@@ -384,8 +387,16 @@ export default class extends AbstractView {
         openPopup(popupDueDate);
     }
 
-    document.getElementById("bubble-due-date-task").addEventListener("click", () => openDueDatePopup("task"));
-    document.getElementById("bubble-due-date-reminder").addEventListener("click", () => openDueDatePopup("reminder"));
+    document.getElementById("bubble-due-date-task").addEventListener("click", (e) => {
+        e.stopPropagation();
+        openDueDatePopup("task");
+    });
+
+    document.getElementById("bubble-due-date-reminder").addEventListener("click", (e) => {
+        e.stopPropagation();
+        openDueDatePopup("reminder");
+    });
+
     closeDueDateBtn.addEventListener("click", () => closePopup(popupDueDate));
 
     function setDueDateFromToday(daysOffset) {
@@ -467,14 +478,19 @@ export default class extends AbstractView {
         renderRemindersList();
     });
 
-    document.getElementById("bubble-reminders-task").addEventListener("click", () => {
+
+    document.getElementById("bubble-reminders-task").addEventListener("click", (e) => {
+    e.stopPropagation();
+    renderRemindersList();
+    openPopup(popupReminders);
+});
+
+    document.getElementById("bubble-reminders-reminder").addEventListener("click", (e) => {
+        e.stopPropagation();
         renderRemindersList();
         openPopup(popupReminders);
     });
-    document.getElementById("bubble-reminders-reminder").addEventListener("click", () => {
-        renderRemindersList();
-        openPopup(popupReminders);
-    });
+
     closeRemindersBtn.addEventListener("click", () => closePopup(popupReminders));
 
     // ── Expand/collapse chatbox sections ───────────────────
