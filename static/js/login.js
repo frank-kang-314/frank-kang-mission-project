@@ -60,9 +60,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-window.gapiLoaded = function() {
+window.addEventListener("gapi-loaded", () => {
     gapi.load('client', initializeGapiClient);
-}
+});
 
 async function initializeGapiClient() {
     await gapi.client.init({
@@ -81,7 +81,7 @@ async function initializeGapiClient() {
     maybeEnableButtons();
 }
 
-window.gisLoaded = function() {
+window.addEventListener("gis-loaded", () => {
     tokenClient = google.accounts.oauth2.initTokenClient({
         client_id: CLIENT_ID,
         scope: SCOPES,
@@ -89,7 +89,7 @@ window.gisLoaded = function() {
     });
     gisInited = true;
     maybeEnableButtons();
-}
+});
 
 function maybeEnableButtons() {
     if (gapiInited && gisInited) {
