@@ -44,6 +44,8 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('authorize-button').disabled = true;
     document.getElementById('start-app').style.visibility = 'hidden';
 
+    maybeEnableButtons();
+
     document.getElementById('get-started').addEventListener('click', () => {
         document.getElementById('welcome-page').classList.remove('active');
         document.getElementById('login-page').classList.add('active');
