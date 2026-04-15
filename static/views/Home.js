@@ -147,6 +147,163 @@ export default class extends AbstractView {
         }
     }
 
+    // ── Info box: fetch and render tasks ──────────────────
+    async function loadTaskList() {
+        const spreadsheetId = localStorage.getItem("cccSpreadsheetId");
+        const taskListEl = document.getElementById("task-list");
+        if (!taskListEl) return;
+
+        if (!spreadsheetId) {
+            taskListEl.innerHTML = "<div class='info-empty'>No tasks yet.</div>";
+            return;
+        }
+
+        taskListEl.innerHTML = "<div class='info-empty'>Loading...</div>";
+
+        try {
+            const res = await gapi.client.sheets.spreadsheets.values.get({
+                spreadsheetId,
+                range: "Tasks & Reminders!A2:E"
+            });
+            const rows = res.result.values || [];
+            const tasks = rows
+                .filter(r => r[1] === "Task" && r[3])
+                .map(r => ({ name: r[0], category: r[2] || "", dueDate: r[3] }));
+
+            const filter = document.getElementById("task-filter").value;
+            const today  = new Date();
+            today.setHours(0, 0, 0, 0);
+            const tomorrow = new Date(today); tomorrow.setDate(today.getDate() + 1);
+            const weekEnd  = new Date(today); weekEnd.setDate(today.getDate() + 7);
+
+            const filtered = tasks.filter(t => {
+                const d = new Date(t.dueDate + "T00:00:00");
+                if (filter === "today")    return d.toDateString() === today.toDateString();
+                if (filter === "tomorrow") return d.toDateString() === tomorrow.toDateString();
+                if (filter === "week")     return d >= today && d <= weekEnd;
+                return false;
+            });
+
+            taskListEl.innerHTML = "";
+            if (filtered.length === 0) {
+                taskListEl.innerHTML = "<div class='info-empty'>No tasks for this period.</div>";
+                return;
+            }
+
+            filtered.forEach(t => {
+                const card = document.createElement("div");
+                card.className = "info-card task";
+                card.innerHTML = `
+                    <div class="info-card-title">${t.name}</div>
+                    <div class="info-card-meta">${t.category || "No category"} · Due ${t.dueDate}</div>
+                `;
+                taskListEl.appendChild(card);
+            });
+
+        } catch (e) {
+            console.warn("Could not load tasks:", e);
+            taskListEl.innerHTML = "<div class='info-empty'>Could not load tasks.</div>";
+        }
+    }
+
+    // ── Info box: fetch and render today's reminders + gcal events ──
+    async function loadTodayList() {
+        const todayListEl = document.getElementById("today-list");
+        if (!todayListEl) return;
+
+        todayListEl.innerHTML = "<div class='info-empty'>Loading...</div>";
+
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        const todayStr = today.toISOString().split("T")[0];
+
+        const items = [];
+
+        // App reminders due today
+        const spreadsheetId = localStorage.getItem("cccSpreadsheetId");
+        if (spreadsheetId) {
+            try {
+                const res = await gapi.client.sheets.spreadsheets.values.get({
+                    spreadsheetId,
+                    range: "Tasks & Reminders!A2:E"
+                });
+                const rows = res.result.values || [];
+                rows
+                    .filter(r => r[1] === "Reminder" && r[3] === todayStr)
+                    .forEach(r => items.push({ type: "reminder", title: r[0], meta: "Reminder" }));
+
+                // Also pull reminders column for tasks (column E) that fire today
+                rows
+                    .filter(r => r[4])
+                    .forEach(r => {
+                        const reminderTimes = r[4].split(";").map(s => s.trim());
+                        reminderTimes.forEach(rt => {
+                            if (rt.startsWith(todayStr)) {
+                                const time = rt.split(" ")[1] || "";
+                                items.push({ type: "reminder", title: r[0], meta: `Reminder at ${time}` });
+                            }
+                        });
+                    });
+            } catch (e) {
+                console.warn("Could not load reminders:", e);
+            }
+        }
+
+        // Google Calendar events today
+        try {
+            const startOfDay = new Date(today);
+            const endOfDay   = new Date(today); endOfDay.setHours(23, 59, 59);
+            const res = await gapi.client.calendar.events.list({
+                calendarId: "primary",
+                timeMin: startOfDay.toISOString(),
+                timeMax: endOfDay.toISOString(),
+                singleEvents: true,
+                orderBy: "startTime",
+                maxResults: 50
+            });
+            (res.result.items || []).forEach(e => {
+                const time = e.start.dateTime
+                    ? new Date(e.start.dateTime).toLocaleTimeString([], { hour: "numeric", minute: "2-digit" })
+                    : "All day";
+                items.push({ type: "gcal-event", title: e.summary || "(No title)", meta: time });
+            });
+        } catch (e) {
+            console.warn("Could not load gcal events:", e);
+        }
+
+        todayListEl.innerHTML = "";
+        if (items.length === 0) {
+            todayListEl.innerHTML = "<div class='info-empty'>Nothing for today.</div>";
+            return;
+        }
+
+        // Sort: reminders first, then gcal events by meta (time)
+        items.sort((a, b) => {
+            if (a.type === b.type) return 0;
+            return a.type === "reminder" ? -1 : 1;
+        });
+
+        items.forEach(item => {
+            const card = document.createElement("div");
+            card.className = `info-card ${item.type}`;
+            card.innerHTML = `
+                <div class="info-card-title">${item.title}</div>
+                <div class="info-card-meta">${item.meta}</div>
+            `;
+            todayListEl.appendChild(card);
+        });
+    }
+
+    // Hook up the filter dropdown
+    const taskFilter = document.getElementById("task-filter");
+    if (taskFilter) {
+        taskFilter.addEventListener("change", loadTaskList);
+    }
+
+    // Load both panels
+    loadTaskList();
+    loadTodayList();
+
     // ── Google Sheets: ensure spreadsheet exists ───────────
     async function ensureSpreadsheet() {
         let spreadsheetId = localStorage.getItem("cccSpreadsheetId");

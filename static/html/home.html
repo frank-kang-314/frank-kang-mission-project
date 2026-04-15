@@ -2,7 +2,26 @@
 
 </div>
 <div class="home-box info hide-before-login">
-    <div class="home-task-overview"></div>
+    <div class="info-half" id="info-tasks">
+        <div class="info-half-header">
+            <span class="info-half-title">Upcoming Tasks</span>
+            <select id="task-filter" class="info-filter">
+                <option value="today">Due Today</option>
+                <option value="tomorrow">Due Tomorrow</option>
+                <option value="week">Due This Week</option>
+            </select>
+        </div>
+        <div class="info-half-body" id="task-list"></div>
+    </div>
+
+    <div class="info-divider"></div>
+
+    <div class="info-half" id="info-right">
+        <div class="info-half-header">
+            <span class="info-half-title">Today</span>
+        </div>
+        <div class="info-half-body" id="today-list"></div>
+    </div>
 </div>
 <div class="home-box add-task-or-reminder hide-before-login">
 

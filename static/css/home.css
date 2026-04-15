@@ -545,3 +545,99 @@
 #submit-task::before {
     content: "✓";
 }
+
+/* ── Info box layout ── */
+.info {
+    flex-direction: row;
+    align-items: stretch;
+    padding: 0;
+    overflow: hidden;
+}
+
+.info-half {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5vh 1.5vw;
+    min-width: 0;
+}
+
+.info-divider {
+    width: 1px;
+    background-color: black;
+    flex-shrink: 0;
+}
+
+.info-half-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.2vh;
+    flex-shrink: 0;
+}
+
+.info-half-title {
+    font-weight: 700;
+    font-size: 1.6cqw;
+}
+
+.info-filter {
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 1.2cqw;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 0.3vh 0.5vw;
+    background-color: white;
+    cursor: pointer;
+}
+
+.info-half-body {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8vh;
+}
+
+/* ── Task/event cards ── */
+.info-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 0.7vh 1vw;
+    font-size: 1.3cqw;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2vh;
+    background-color: white;
+}
+
+.info-card-title {
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.info-card-meta {
+    font-size: 1.1cqw;
+    color: #888;
+}
+
+.info-card.task {
+    border-left: 3px solid #f0a0a0;
+}
+
+.info-card.reminder {
+    border-left: 3px solid #a0c4f0;
+}
+
+.info-card.gcal-event {
+    border-left: 3px solid #b0d9b0;
+}
+
+.info-empty {
+    font-size: 1.2cqw;
+    color: #bbb;
+    text-align: center;
+    margin-top: 2vh;
+}
