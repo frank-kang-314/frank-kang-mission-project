@@ -160,13 +160,9 @@
     display: block;
 }
 
-button {
+.blue-button {
     border: 0;
-    font-family: "Nunito Sans", sans-serif;
     background-color: #DCE8F6;
-    padding: 2vh 4vh;
-    font-size: 2cqh;
-    border-radius: 4%;
 }
 
 #authorize-button {
