@@ -51,13 +51,14 @@
         window.gapiLoaded = () => {
             window.dispatchEvent(new Event("gapi-loaded"));
         };
+
         window.gisLoaded = () => {
             window.dispatchEvent(new Event("gis-loaded"));
         };
         </script>
 
-        <script defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
-        <script defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
+        <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
+        <script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
 
         <script type="module" src="static/js/login.js"></script>
         <script type="module" src="static/js/script.js"></script>
