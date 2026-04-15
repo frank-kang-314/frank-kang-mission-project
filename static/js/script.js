@@ -1,5 +1,8 @@
 import Home from "../views/Home.js";
 import Calendar from "../views/Calendar.js";
+import Settings from "../views/Settings.js";
+import Profile from "../views/Profile.js";
+
 import { BASE_PATH } from "./config.js";
 
 const navigateTo = url => {
@@ -14,8 +17,8 @@ const router = async () => {
     const routes = [
         { path: "/", view: Home },
         { path: "/calendar", view: Calendar },
-        { path: "/settings", view: () => console.log("Viewing settings") },
-        { path: "/profile", view: () => console.log("Viewing profile") },
+        { path: "/settings", view: Settings },
+        { path: "/profile", view: Profile },
     ];
 
     const match = routes.find(r => r.path === path) || { view: Home };
