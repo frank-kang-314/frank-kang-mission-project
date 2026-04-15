@@ -11,10 +11,10 @@
 }
 
 .profile-box img {
-    height: 80%;
+    height: 100%;
     width: auto;
     margin-right: 5vw;
-    border-radius: 50%;
+    border-radius: 10%;
 }
 
 .profile-info-box {
