@@ -49,6 +49,10 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('login-page').classList.add('active');
     });
 
+    document.getElementById('authorize-button').addEventListener('click', () => {
+        handleAuthClick();
+    });
+
     document.getElementById('start-app').addEventListener('click', () => {
         enterApp();
     });
