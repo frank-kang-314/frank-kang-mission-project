@@ -189,3 +189,358 @@
     display: flex;
     flex-direction: column;
 }
+
+/* ── Bubbles ── */
+.bubble-row {
+    display: none;
+    flex-direction: row;
+    gap: 1vw;
+    position: absolute;
+    bottom: calc(1vw + 2.5cqw + 2vh + 0.5vh);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.bubble-row.visible {
+    display: flex;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+#task-bubbles {
+    left: 1vw;
+}
+
+#reminder-bubbles {
+    right: 1vw;
+}
+
+.bubble {
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 999px;
+    padding: 0.4vh 1.2vw;
+    font-size: 1.5cqw;
+    font-family: "Nunito Sans", sans-serif;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+.bubble:hover {
+    background-color: #f0f0f0;
+}
+
+.bubble.selected {
+    background-color: #DCE8F6;
+    border-color: #7aaed6;
+}
+
+/* ── Pop-ups ── */
+.popup {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.3);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup.open {
+    display: flex;
+}
+
+.popup-inner {
+    background: white;
+    border-radius: 12px;
+    padding: 2vh 2vw;
+    min-width: 22vw;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+}
+
+.popup-inner--small {
+    min-width: 16vw;
+}
+
+.popup-inner--wide {
+    min-width: 44vw;
+}
+
+.popup-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5vh;
+    font-weight: 700;
+    font-size: 1.8cqw;
+}
+
+.popup-close {
+    background: none;
+    border: none;
+    font-size: 1.5cqw;
+    cursor: pointer;
+    padding: 0;
+}
+
+.popup-add-btn {
+    background: none;
+    border: 1px solid black;
+    border-radius: 50%;
+    width: 3vh;
+    height: 3vh;
+    font-size: 1.8cqw;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup-section-label {
+    font-size: 1.3cqw;
+    font-weight: 700;
+    color: #666;
+    margin: 1vh 0 0.5vh;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* ── Sort pop-up ── */
+.sort-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vh;
+    margin-bottom: 1vh;
+}
+
+.sort-option-btn {
+    background: none;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 0.6vh 1vw;
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 1.5cqw;
+    cursor: pointer;
+    text-align: left;
+    transition: background-color 0.15s;
+}
+
+.sort-option-btn:hover {
+    background-color: #f5f5f5;
+}
+
+.sort-option-btn.selected {
+    background-color: #DCE8F6;
+    border-color: #7aaed6;
+}
+
+.popup-add-folder {
+    margin-top: 1vh;
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 1.4cqw;
+    padding: 0.6vh 1vw;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* ── Due date pop-up ── */
+.due-date-body {
+    display: flex;
+    gap: 2vw;
+}
+
+.due-date-left {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8vh;
+    flex: 1;
+}
+
+.due-date-right {
+    flex: 1;
+}
+
+.due-option {
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 0.6vh 1vw;
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 1.4cqw;
+    cursor: pointer;
+    text-align: left;
+    transition: background-color 0.15s;
+    width: 100%;
+}
+
+.due-option:hover:not(:disabled) {
+    background-color: #f5f5f5;
+}
+
+.due-option:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.due-option.selected {
+    background-color: #DCE8F6;
+    border-color: #7aaed6;
+}
+
+.due-option-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5vw;
+    font-size: 1.4cqw;
+}
+
+.due-option--inline {
+    width: auto;
+    flex-shrink: 0;
+}
+
+.due-number-input {
+    width: 4vw;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 0.4vh 0.4vw;
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 1.4cqw;
+    text-align: center;
+}
+
+/* ── Calendar ── */
+.calendar-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1vh;
+    font-size: 1.5cqw;
+}
+
+.calendar-nav button {
+    background: none;
+    border: none;
+    font-size: 2cqw;
+    cursor: pointer;
+    padding: 0 0.5vw;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.3vh;
+    font-size: 1.3cqw;
+    text-align: center;
+}
+
+.calendar-grid .cal-day-header {
+    font-weight: 700;
+    color: #999;
+    padding: 0.3vh 0;
+}
+
+.calendar-grid .cal-day {
+    padding: 0.5vh 0;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.15s;
+}
+
+.calendar-grid .cal-day:hover {
+    background-color: #f0f0f0;
+}
+
+.calendar-grid .cal-day.selected {
+    background-color: #DCE8F6;
+}
+
+.calendar-grid .cal-day.today {
+    font-weight: 700;
+    border: 1px solid #7aaed6;
+    border-radius: 50%;
+}
+
+.calendar-grid .cal-day.empty {
+    cursor: default;
+}
+
+/* ── Reminders pop-up ── */
+#reminders-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+    margin-top: 1vh;
+}
+
+.reminder-entry {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 0.8vh 1vw;
+    font-size: 1.4cqw;
+}
+
+.reminder-entry-left {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4vh;
+}
+
+.reminder-date-input,
+.reminder-time-input {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 0.3vh 0.5vw;
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 1.3cqw;
+}
+
+.reminder-delete {
+    background: none;
+    border: none;
+    color: #cc4444;
+    font-size: 1.6cqw;
+    cursor: pointer;
+    padding: 0;
+}
+
+/* ── Success flash ── */
+@keyframes flashGreen {
+    0%   { background-color: inherit; }
+    30%  { background-color: #b6f5c2; }
+    100% { background-color: inherit; }
+}
+
+.flash-success {
+    animation: flashGreen 1s ease forwards;
+}
+
+/* ── Submit button ── */
+#submit-task {
+    position: absolute;
+    bottom: 1vh;
+    right: 1vw;
+    background-color: #b6f5c2;
+    border-color: #4caf70;
+    font-size: 1.4cqw;
+    padding: 0.6vh 1.5vw;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+#submit-task.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+#submit-task::before {
+    content: "✓ Submit";
+}

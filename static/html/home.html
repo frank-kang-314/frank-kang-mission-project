@@ -10,6 +10,11 @@
         <span class="section-label">Task</span>
         <div class="add-task-bubble-options"></div>
         <div class="new-task">
+            <div class="bubble-row" id="task-bubbles">
+                <button class="bubble" id="bubble-sort">Sort</button>
+                <button class="bubble" id="bubble-due-date-task">Due Date</button>
+                <button class="bubble" id="bubble-reminders-task">Reminders</button>
+            </div>
             <input 
             type="text"
             id="new-task"
@@ -23,6 +28,11 @@
         <span class="section-label">Reminder</span>
         <div class="add-reminder-bubble-options"></div>
         <div class="new-reminder">
+            <div class="bubble-row" id="reminder-bubbles">
+                <button class="bubble" id="bubble-due-date-reminder">Due Date</button>
+                <button class="bubble" id="bubble-reminders-reminder">Reminders</button>
+            </div>
+
             <input 
             type="text"
             id="new-reminder"
@@ -31,5 +41,83 @@
         </div>
     </form>
     <button class="back-button clickable" id="back-reminder">&rarr;</button>
-    <button class="clickable" id="submit-task"></button>
+    
+    <div class="popup" id="popup-sort">
+        <div class="popup-inner">
+            <div class="popup-header">
+                <span>Sort</span>
+                <button class="popup-close" id="close-sort">✕</button>
+            </div>
+            <p class="popup-section-label">Classes</p>
+            <div id="sort-classes" class="sort-options"></div>
+            <p class="popup-section-label">Folders</p>
+            <div id="sort-folders" class="sort-options"></div>
+            <button class="blue-button popup-add-folder" id="open-add-folder">+ Add Folder</button>
+        </div>
+    </div>
+
+    <div class="popup" id="popup-add-folder">
+        <div class="popup-inner popup-inner--small">
+            <div class="popup-header">
+                <span>New Folder</span>
+                <button class="popup-close" id="close-add-folder">✕</button>
+            </div>
+            <input type="text" id="new-folder-name" placeholder="Folder name" class="add-item-field visible" style="position:static; width:100%; margin: 1vh 0;"/>
+            <button class="blue-button" id="save-folder">Save</button>
+        </div>
+    </div>
+
+    <div class="popup" id="popup-due-date">
+    <div class="popup-inner popup-inner--wide">
+        <div class="popup-header">
+            <span>Due Date</span>
+            <button class="popup-close" id="close-due-date">✕</button>
+        </div>
+        <div class="due-date-body">
+            <div class="due-date-left">
+                <button class="due-option" id="due-today">Today</button>
+                <button class="due-option" id="due-tomorrow">Tomorrow</button>
+                <div class="due-option-row">
+                    <button class="due-option due-option--inline" id="due-in-days">In</button>
+                    <input type="number" min="1" class="due-number-input" id="due-days-num" placeholder="N"/>
+                    <span>days</span>
+                </div>
+                <button class="due-option" id="due-next-block">Next Block</button>
+                <div class="due-option-row">
+                    <button class="due-option due-option--inline" id="due-in-blocks">In</button>
+                    <input type="number" min="1" class="due-number-input" id="due-blocks-num" placeholder="N"/>
+                    <span>blocks</span>
+                </div>
+                <button class="due-option" id="due-next-week">Next Week</button>
+                <div class="due-option-row">
+                    <button class="due-option due-option--inline" id="due-in-weeks">In</button>
+                    <input type="number" min="1" class="due-number-input" id="due-weeks-num" placeholder="N"/>
+                    <span>weeks</span>
+                </div>
+            </div>
+            <div class="due-date-right">
+                <div class="calendar-nav">
+                    <button id="cal-prev">&#8249;</button>
+                    <span id="cal-month-label"></span>
+                    <button id="cal-next">&#8250;</button>
+                </div>
+                <div class="calendar-grid" id="calendar-grid"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="popup" id="popup-reminders">
+    <div class="popup-inner">
+        <div class="popup-header">
+            <span>Reminders</span>
+            <button class="popup-close" id="close-reminders">✕</button>
+            <button class="popup-add-btn" id="add-reminder-entry">+</button>
+        </div>
+        <div id="reminders-list"></div>
+    </div>
+</div>
+
+<button class="clickable" id="submit-task"></button>
+
 </div>

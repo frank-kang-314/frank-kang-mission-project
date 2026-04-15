@@ -6,7 +6,7 @@ const DISCOVERY_DOCS = [
     'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'
 ];
 
-const SCOPES = 'https://www.googleapis.com/auth/spreadsheets https://www.googleapis.com/auth/calendar openid profile email';
+const SCOPES = 'https://www.googleapis.com/auth/spreadsheets https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/drive.file openid profile email';
 
 let tokenClient;
 let gapiInited = false;
@@ -62,6 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 window.gapiLoaded = function() {
     gapi.load('client', initializeGapiClient);
+    gapi.client.load("drive", "v3");
 }
 
 async function initializeGapiClient() {
