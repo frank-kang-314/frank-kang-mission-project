@@ -151,7 +151,6 @@ export default class extends AbstractView {
     async function ensureSpreadsheet() {
         let spreadsheetId = localStorage.getItem("cccSpreadsheetId");
         if (spreadsheetId) {
-            // Verify it still exists
             try {
                 await gapi.client.sheets.spreadsheets.get({ spreadsheetId });
                 return spreadsheetId;
@@ -160,24 +159,7 @@ export default class extends AbstractView {
             }
         }
 
-        // Search Drive for existing spreadsheet
-        try {
-            const searchRes = await gapi.client.drive.files.list({
-                q: "name contains 'CookCookCook' and mimeType='application/vnd.google-apps.spreadsheet' and trashed=false",
-                fields: "files(id, name)"
-            });
-            const files = searchRes.result.files || [];
-            if (files.length > 0) {
-                spreadsheetId = files[0].id;
-                localStorage.setItem("cccSpreadsheetId", spreadsheetId);
-                await ensureSheets(spreadsheetId);
-                return spreadsheetId;
-            }
-        } catch (e) {
-            console.warn("Drive search failed:", e);
-        }
-
-        // Create new spreadsheet
+        // No valid cached ID — create a new one
         const profile = JSON.parse(localStorage.getItem("userProfile") || "{}");
         const title = `CookCookCook - ${profile.name || "User"}`;
         const createRes = await gapi.client.sheets.spreadsheets.create({
@@ -190,7 +172,6 @@ export default class extends AbstractView {
         spreadsheetId = createRes.result.spreadsheetId;
         localStorage.setItem("cccSpreadsheetId", spreadsheetId);
 
-        // Write headers
         await gapi.client.sheets.spreadsheets.values.update({
             spreadsheetId,
             range: "Tasks & Reminders!A1:E1",
@@ -536,10 +517,18 @@ export default class extends AbstractView {
     // ── Submit ─────────────────────────────────────────────
     submitBtn.addEventListener("click", async (e) => {
         e.stopPropagation();
+
+        // Prevent double-submit
+        if (submitBtn.disabled) return;
+        submitBtn.disabled = true;
+
         const isTask     = activeSide === "task";
         const inputField = isTask ? taskInputField : reminderInputField;
         const name       = inputField.value.trim();
-        if (!name) return;
+        if (!name) {
+            submitBtn.disabled = false;
+            return;
+        }
 
         const type        = isTask ? "Task" : "Reminder";
         const category    = selectedSort || "";
@@ -549,7 +538,6 @@ export default class extends AbstractView {
         try {
             const spreadsheetId = await ensureSpreadsheet();
 
-            // Write to Sheets
             await gapi.client.sheets.spreadsheets.values.append({
                 spreadsheetId,
                 range: "Tasks & Reminders!A:E",
@@ -557,7 +545,6 @@ export default class extends AbstractView {
                 resource: { values: [[name, type, category, dueDateStr, remindersStr]] }
             });
 
-            // Create Google Calendar event
             const eventDate = selectedDueDate || new Date();
             const event = {
                 summary: name,
@@ -574,17 +561,21 @@ export default class extends AbstractView {
             };
             await gapi.client.calendar.events.insert({ calendarId: "primary", resource: event });
 
-            // Flash green success
+            // Flash green then reset
             const box = document.querySelector(".add-task-or-reminder");
             box.classList.add("flash-success");
-            box.addEventListener("animationend", () => {
+
+            setTimeout(() => {
                 box.classList.remove("flash-success");
+                inputField.value = "";
+                submitBtn.disabled = false;
                 resetAll();
-            }, { once: true });
+            }, 1000);
 
         } catch (err) {
             console.error("Submit failed:", err);
             alert("Something went wrong. Check the console.");
+            submitBtn.disabled = false;
         }
     });
 

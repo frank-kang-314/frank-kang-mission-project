@@ -514,20 +514,20 @@
 
 /* ── Success flash ── */
 @keyframes flashGreen {
-    0%   { background-color: inherit; }
-    30%  { background-color: #b6f5c2; }
-    100% { background-color: inherit; }
+    0%   { background-color: #b6f5c2; }
+    70%  { background-color: #b6f5c2; }
+    100% { background-color: transparent; }
 }
 
 .flash-success {
-    animation: flashGreen 1s ease forwards;
+    animation: flashGreen 1s ease forwards !important;
 }
 
 /* ── Submit button ── */
 #submit-task {
     position: absolute;
     bottom: 1vh;
-    right: -2vw;
+    right: -5vw;
     background-color: #b6f5c2;
     border-color: #4caf70;
     font-size: 1.4cqw;
@@ -543,5 +543,5 @@
 }
 
 #submit-task::before {
-    content: "✓ Submit";
+    content: "✓";
 }
