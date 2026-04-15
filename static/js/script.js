@@ -14,11 +14,8 @@ const router = async () => {
     const routes = [
         { path: "/", view: Home },
         { path: "/calendar", view: Calendar },
-        { path: "/projects", view: () => console.log("Viewing projects") },
-        { path: "/habits", view: () => console.log("Viewing habits") },
         { path: "/settings", view: () => console.log("Viewing settings") },
         { path: "/profile", view: () => console.log("Viewing profile") },
-        { path: "/404notfound", view: () => console.log("Viewing 404NotFound") }
     ];
 
     const match = routes.find(r => r.path === path) || { view: Home };
