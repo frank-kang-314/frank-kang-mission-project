@@ -41,10 +41,9 @@ export default class extends AbstractView {
         document.getElementById("signout").addEventListener('click', () => {
             const token = gapi.client.getToken();
             if (token !== null) {
-            google.accounts.oauth2.revoke(token.access_token);
-            gapi.client.setToken('');
-            localStorage.setItem("loggedIn", "false");
-            window.location.reload();
+                gapi.client.setToken('');
+                localStorage.removeItem("loggedIn");  // also fix this as discussed
+                window.location.href = "../";
             }
         });
     }
