@@ -35,10 +35,9 @@
 body {
     display: flex;
     width: 100vw;
-    padding: 2vh 4vh;
+    
     font-family: "Nunito Sans", sans-serif;
     color: black;
-    font-size: 2cqh;
 }
 
 a {
@@ -50,6 +49,8 @@ button {
     background-color: white;
     border-radius: 4%;
     font-size: 2cqh;
+    padding: 2vh 4vh;
+    font-family: "Nunito Sans", sans-serif;
 }
 
 .sidebar {

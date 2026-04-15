@@ -21,6 +21,10 @@ export default class extends AbstractView {
         }
 
         const profile = localStorage.getItem("userProfile");
+        console.log(profile);
+        console.log(profile.picture);
+        console.log(profile.name);
+        console.log(profile.email);
 
         const profilePicture = document.createElement("img");
         profilePicture.src = profile.picture;
