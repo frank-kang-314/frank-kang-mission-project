@@ -83,7 +83,10 @@ window.gisLoaded = function() {
 
 function maybeEnableButtons() {
     if (gapiInited && gisInited) {
-        document.getElementById('authorize-button').disabled = false;
+        const btn = document.getElementById('authorize-button');
+        if (btn) {
+            btn.disabled = false;
+        }
     }
 }
 
