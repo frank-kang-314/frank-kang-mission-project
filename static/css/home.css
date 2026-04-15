@@ -8,10 +8,6 @@
     position: relative;
 }
 
-.clickable {
-    cursor: pointer;
-}
-
 .stats {
     flex: 1;
 }
@@ -75,6 +71,11 @@
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.2s ease;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
 }
 
 .back-button.visible {
@@ -121,7 +122,7 @@
     border: 0;
 
     font-family: "Nunito Sans", sans-serif;
-    font-size: 1.7cqw;
+    font-size: 2.5cqw;
 }
 
 .add-item-field.visible#new-task {

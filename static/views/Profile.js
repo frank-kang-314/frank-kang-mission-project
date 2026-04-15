@@ -43,7 +43,7 @@ export default class extends AbstractView {
             if (token !== null) {
                 gapi.client.setToken('');
                 localStorage.removeItem("loggedIn");  // also fix this as discussed
-                window.location.href = "https://frank-kang-314/github.io/frank-kang-mission-project";
+                window.location.href = "https://frank-kang-314.github.io/frank-kang-mission-project";
             }
         });
     }
