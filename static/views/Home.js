@@ -19,6 +19,10 @@ export default class extends AbstractView {
             link.href = `${BASE_PATH}/static/css/home.css`;
             document.head.appendChild(link);
         }
+
+        if (localStorage.getItem("loggedIn") === "true") {
+            document.querySelectorAll(".hide-before-login").forEach(element => element.classList.remove("hide-before-login"));
+        }
         
         const chatboxSections = document.querySelectorAll(".chatbox-section");
 
