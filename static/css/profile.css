@@ -1,8 +1,11 @@
 .profile-box {
-    width: 80%;
-    aspect-ratio: 4 / 1;
-    display: flex;
+    height: 5vw;
+    padding: 10px;
+    display: inline-flex;
     flex-direction: row;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 10%;
 }
 
 .profile-box img {
@@ -15,12 +18,13 @@
 .profile-info-box {
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
 }
 
 #user-profile-name {
-    font-size: 4cqh;
+    font-size: 3.5cqh;
 }
 
 #user-profile-email {
-    font-size: 2.5cqh;
+    font-size: 2cqh;
 }
